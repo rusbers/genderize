@@ -1,0 +1,15 @@
+{
+  "name": "getinput",
+  "version": "1.0.0",
+  "description": "my fisrt ts project",
+  "main": "index.js",
+  "author": "Ruslan",
+  "scripts": {
+    "start": "npx parcel index.html"
+  },
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "parcel": "^2.5.0"
+  }
+}

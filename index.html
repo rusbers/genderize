@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form class="form" onsubmit="return false">
+      <label>
+        Your name:
+        <input class="input" type="text" placeholder="name...">
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <p class="output"></p>
+  </div>
+  <script src="./build/index.js" type="module"></script>
+</body>
+</html>
