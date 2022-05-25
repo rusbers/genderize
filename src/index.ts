@@ -1,28 +1,29 @@
 import { UI_ELEMENTS } from './view';
 import { generateServerUrl } from './api';
-import { errorNameMessage, errorServerMessage, getInputValue, isStatusOK, showErrorMessage } from './helpers';
+import { getInputValue, isStatusOK } from './helpers';
+import { errorMessage, throwError, showMessage } from './message';
 
-UI_ELEMENTS.FORM.addEventListener('submit', getGender);
+UI_ELEMENTS.FORM.addEventListener('submit', renderGender);
 
-async function getGender(this: any): Promise<void> {
+async function getGender(): Promise<Response> {
   const name: string = getInputValue();
   const fetchUrl: string = generateServerUrl(name);
-  const outputMessage = (name: string, gender: string): string => {
-    return `${name} is ${gender}`;
-  }
+  const fetchGender = await fetch(fetchUrl);
 
+  return isStatusOK(fetchGender) ? fetchGender : throwError(errorMessage.server());
+}
+
+async function renderGender(this: any): Promise<void> {
   try {
-    const fetchGender = await fetch(fetchUrl);
-
-    if(!isStatusOK(fetchGender)) throw new Error(errorServerMessage());
-
+    const fetchGender = await getGender();
     const fetchResult = await fetchGender.json();
+    const resultingGender = fetchResult.gender;
+    const enteredName = fetchResult.name;
 
-    if (!fetchResult.gender) throw new Error(errorNameMessage(fetchResult.name));
-
-    UI_ELEMENTS.OUTPUT.textContent = outputMessage(fetchResult.name, fetchResult.gender);
-  } catch(error: any) {
-    showErrorMessage(UI_ELEMENTS.OUTPUT, error, 'error');
+    if (!resultingGender) throwError(errorMessage.name(enteredName));
+    showMessage(false, null, [enteredName, resultingGender])
+  } catch (catchedError: any) {
+    showMessage(true, catchedError);
     return;
   } finally {
     this.reset();
