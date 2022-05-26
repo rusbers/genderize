@@ -1,15 +1,20 @@
 {
-  "name": "getinput",
-  "version": "1.0.0",
-  "description": "my fisrt ts project",
-  "main": "index.js",
-  "author": "Ruslan",
+  "name": "genderize",
+  "private": true,
+  "version": "0.0.0",
   "scripts": {
-    "start": "npx parcel index.html"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
   "devDependencies": {
-    "parcel": "^2.5.0"
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "vite": "^2.9.9"
   }
 }
