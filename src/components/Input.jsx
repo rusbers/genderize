@@ -1,14 +1,12 @@
-function Input( props ) {
-  const { inputLabel, inputClass, inputType, placeholder } = props;
+import React from 'react';
 
-  function change() {
-    console.log( 'cut' )
-  }
+function Input( props ) {
+  const { label, type, placeholder } = props.inputProps;
 
   return (
     <label>
-      { inputLabel }
-      <input className={ inputClass } type={ inputType } placeholder={ placeholder } onCut={ change }/>
+      { label }
+      <input type={ type } placeholder={ placeholder } value={props.value} onChange={props.onChange}/>
     </label>
   )
 }
